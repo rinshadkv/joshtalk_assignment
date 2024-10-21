@@ -13,11 +13,11 @@ You do not need to install Python or PostgreSQL locally, as the application runs
 1. Clone the Repository
 
    ````
-   git clone <repository-url> 
+   git clone https://github.com/rinshadkv/joshtalk_assignment.git
    ````
 
    ````
-   cd <repository-directory>
+   cd josh_assignment
    ````
 2. Build and Start the Containers
 
