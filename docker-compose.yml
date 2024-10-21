@@ -1,0 +1,27 @@
+services:
+#  database service
+  db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_DB: task_manager_db
+      POSTGRES_USER: task_user
+      POSTGRES_PASSWORD: password123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+# django application service
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    entrypoint: [ "/app/dbmigration.sh" ]
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://task_user:password123@db:5432/task_manager_db
+
+volumes:
+  postgres_data:
